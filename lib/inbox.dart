@@ -52,7 +52,14 @@ class _InboxWidgetState extends State<InboxWidget> {
     // TODO: this should be placed in the body of the scaffold instead of the Task() Widget
     List<Widget> _getTasks() {
       return tasks;
+    }
 
+    Widget _showTasks() {
+      if(tasks.isEmpty) {
+        return Container(child: Text('There are no tasks', style: TextStyle(color: Colors.blue),));
+      } else {
+        return Column(children: _getTasks(),);
+      }
     }
     
 
@@ -60,7 +67,7 @@ class _InboxWidgetState extends State<InboxWidget> {
       appBar: AppBar(
         title: AppBarTitle(pageTitle: 'Inbox',),)
       ,
-      body: Center(child: Column(children: _getTasks(),),),
+      body: Center(child: _showTasks(),),
       
       /*floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
